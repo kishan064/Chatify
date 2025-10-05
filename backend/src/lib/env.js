@@ -10,3 +10,4 @@ export const ENV={
   RESEND_API_KEY:process.env.RESEND_API_KEY,
 
 }
+export default ENV;
