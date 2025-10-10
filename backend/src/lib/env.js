@@ -8,6 +8,12 @@ export const ENV={
   JWT_SECRET:process.env.JWT_SECRET,
   CLIENT_URL:process.env.CLIENT_URL,
   RESEND_API_KEY:process.env.RESEND_API_KEY,
+  EMAIL_FROM:process.env.EMAIL_FROM,
+  EMAIL_FROM_NAME:process.env.EMAIL_FROM_NAME,
+  CLOUDNARY_CLOUD_NAME:process.env.CLOUDNARY_CLOUD_NAME,
+  CLOUDNARY_API_KEY:process.env.CLOUDNARY_API_KEY,
+  CLOUDNARY_API_SECRET:process.env.CLOUDNARY_API_SECRET,
+  
 
 }
 export default ENV;
