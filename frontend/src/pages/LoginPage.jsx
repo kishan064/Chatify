@@ -41,7 +41,7 @@ function LoginPage() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="input"
-                        placeholder="kishan12@gmail.com"
+                        placeholder="johndoe@gmail.com"
                       />
                     </div>
                   </div>

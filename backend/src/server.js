@@ -5,41 +5,31 @@ import cors from "cors";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
-import { connectdb } from "./lib/db.js";
-import {ENV} from "./lib/env.js";
+import { connectDB } from "./lib/db.js";
+import { ENV } from "./lib/env.js";
+import { app, server } from "./lib/socket.js";
 
-const app = express();
 const __dirname = path.resolve();
 
 const PORT = ENV.PORT || 3000;
 
-app.use(express.json({limit:"5mb"}));
-app.use(cors({origin:ENV.CLIENT_URL,credentials:true}));  
+app.use(express.json({ limit: "5mb" })); // req.body
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 app.use(cookieParser());
-
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-//for deployment
+// make ready for deployment
 if (ENV.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
   app.get("*", (_, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
 
-app.listen(PORT, () => {
-
-
-
-  console.log("server running on port:",+PORT)
-  connectdb()
+server.listen(PORT, () => {
+  console.log("Server running on port: " + PORT);
+  connectDB();
 });
